@@ -25,7 +25,7 @@
         "eslint-plugin-prettier"
     ],
     "rules": {
-     "no-console": ["error"],
+     "no-console": ["error","warning"],
     "react/no-direct-mutation-state": ["warn"],
     "no-unused-vars": ["error"],
     // "prettier/prettier": ["error"],
