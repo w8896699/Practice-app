@@ -7,7 +7,7 @@
     justify-content: center;
     border: 1px solid black;
     margin: 0 7.5px 15px;
-  
+    overflow: hidden; //hover 的时候变大会超出div
     // &:first-child {
     //   margin-right: 7.5px;
     // }
@@ -15,4 +15,53 @@
     // &:last-child {
     //   margin-left: 7.5px;
     // }
+
+
+    &:hover{
+        cursor: pointer;
+        
+        & .background-image {
+            transform: scale(1.1);
+            transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95)
+        }
+        & .content{
+            opacity: 80%;
+        }
+      }
+
+      &.large{
+        height: 380px;
+    }
+    .content {
+        height: 90px;
+        padding: 0 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid black;
+        opacity: 70%;
+        background-color: whitesmoke;
+        position: absolute; //这个让整个div单独计算centent的位置,然后图片也不会被挤着因为单独计算之后整个div就只有图片了
+
+        .title {
+          font-weight: bold;
+          margin-bottom: 6px;
+          font-size: 22px;
+          color: #4a4a4a;
+        }
+    
+        .subtitle {
+          font-weight: lighter;
+          font-size: 16px;
+        }
+ 
+      }
+      .background-image{
+          width: 100%;
+          height: 100%;
+          background: center;
+          background-size: cover;
+
+    }
 }
