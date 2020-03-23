@@ -1,17 +1,15 @@
 {
     "env": {
-        "es6": true
+        "es6": true,
+        "node": true
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb",
-        "eslint-config-prettier"
+        "airbnb"
     ],
     "globals": {
-        "graphql": false,
-        "cy": true,
-        "Cypress": true,
-        "assert": true
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
         "ecmaFeatures": {
@@ -21,31 +19,31 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react",
-        "eslint-plugin-prettier"
+        "react"
     ],
+    "parser": "babel-eslint",
     "rules": {
-     "no-console": ["error","warning"],
-    "react/no-direct-mutation-state": ["warn"],
-    "no-unused-vars": ["error"],
-    // "prettier/prettier": ["error"],
-    "linebreak-style": ["warn", "unix"],
-    "semi": ["error", "always"],
-    // "indent": "off",
-    "jsx-a11y/click-events-have-key-events": "off",
-    "import/no-named-as-default": "off",
-    "no-shadow": "off",
-    "quote-props": "off",
-    "max-len": "off",
-    "react/sort-comp": "off",
-    "no-unused-expressions": "warn",
-    "no-useless-concat": "warn",
-    "block-scoped-var": "error",
-    "consistent-return": "error",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "operator-linebreak": "off",
-    "arrow-parens": "off",
-    "eol-last": ["error", "always"]
+        "no-console": ["error"],
+        "react/no-direct-mutation-state": ["warn"],
+        "no-unused-vars": ["error"],
+        // "prettier/prettier": ["error"],
+        "linebreak-style": ["warn", "unix"],
+        "semi": ["error", "always"],
+        "react/state-in-constructor": ["disable", "always"],
+        // "indent": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "import/no-named-as-default": "off",
+        "no-shadow": "off",
+        "quote-props": "off",
+        "max-len": "off",
+        "react/sort-comp": "off",
+        "no-unused-expressions": "warn",
+        "no-useless-concat": "warn",
+        "block-scoped-var": "error",
+        "consistent-return": "error",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "operator-linebreak": "off",
+        "arrow-parens": "off",
+        "eol-last": ["error", "always"]
     }
-    
 }
