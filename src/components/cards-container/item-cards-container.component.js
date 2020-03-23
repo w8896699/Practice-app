@@ -1,6 +1,6 @@
 import React from 'react';
 import CategoryCard from '../menu-card/general-category-card.component';
-import './item-cards-container.style.scss'
+import './item-cards-container.style.scss';
 
 class CardsContainerDefault extends React.Component {
   state = {
@@ -10,51 +10,51 @@ class CardsContainerDefault extends React.Component {
         title: 'hats',
         imageUrl: 'https://i.ibb.co/cvpntL1/hagitts.png',
         id: 1,
-        linkUrl: 'shop/hats',
+        linkUrl: 'hats',
       },
       {
         title: 'jackets',
         imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
         id: 2,
-        linkUrl: 'shop/jackets',
+        linkUrl: 'jackets',
       },
       {
         title: 'sneakers',
         imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
         id: 3,
-        linkUrl: 'shop/sneakers',
+        linkUrl: 'sneakers',
       },
       {
         title: 'womens',
         imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
         size: 'large',
         id: 4,
-        linkUrl: 'shop/womens',
+        linkUrl: 'womens',
       },
       {
         title: 'mens',
         imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
         size: 'large',
         id: 5,
-        linkUrl: 'shop/mens',
+        linkUrl: 'mens',
       },
     ],
   };
 
   render() {
   // console.log('asdfa',this.state.sections)
-  const sections = this.state.sections
+    const { sections } = this.state;
     return (
       <div className="directory-menu">
         {
-          sections.map(({ title, imageUrl, id, size }) => (
-              <CategoryCard
-                key={id}
-                imageUrl = {imageUrl}
-                size = {size}
-                title={title}
-              />
-            ))
+          sections.map(({
+             id, ...otherSectionProps
+          }) => (
+            <CategoryCard
+              key={id}
+              {...otherSectionProps}
+            />
+          ))
         }
       </div>
 
