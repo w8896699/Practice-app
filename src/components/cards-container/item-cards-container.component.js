@@ -5,7 +5,6 @@ import './item-cards-container.style.scss';
 class CardsContainerDefault extends React.Component {
   state = {
     sections: [
-
       {
         title: 'hats',
         imageUrl: 'https://i.ibb.co/cvpntL1/hagitts.png',
