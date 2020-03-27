@@ -27,8 +27,9 @@
         "react/jsx-props-no-spreading": ["off"],
         // "react/no-direct-mutation-state": ["warn"],
         // "no-unused-vars": ["error"],
-        // // "prettier/prettier": ["error"],
-        // "linebreak-style": ["warn", "unix"],
+        // "prettier/prettier": ["error"],
+        "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+        "linebreak-style": ["warn", "unix"],
         // "semi": ["error", "always"],
         "react/state-in-constructor": ["off","always"],
         // "indent": "off",
@@ -37,15 +38,14 @@
         // "no-shadow": "off",
         "react/prop-types": 0,
         // "quote-props": "off",
-        // "max-len": "off",
+        "max-len": "off",
         // "react/sort-comp": "off",
         // "no-unused-expressions": "warn",
         // "no-useless-concat": "warn",
         // "block-scoped-var": "error",
-        // "consistent-return": "error",
+        "consistent-return": "error",
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
         // "operator-linebreak": "off",
-        // "arrow-parens": "off",
         // "eol-last": ["error", "always"]
     }
 }

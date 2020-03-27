@@ -1,11 +1,11 @@
 import React from 'react';
 import './header.style.scss';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../asset/logo/logo.svg';
+import { ReactComponent as Logo } from '../../asset/logo/logo.svg'; // this syntax is just for when import SVG in React
 
 export const Header = () => (
   <div className="header">
-    <Link classNmae="logo-container" to="/">
+    <Link className="logo-container" to="/">
       <Logo className="logo" />
     </Link>
     <div className="options">
@@ -14,6 +14,9 @@ export const Header = () => (
       </Link>
       <Link className="option" to="/contact">
         CONTACT
+      </Link>
+      <Link className="option" to="/signin">
+        SIGN IN
       </Link>
     </div>
   </div>
