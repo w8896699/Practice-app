@@ -15,6 +15,7 @@
 
         border: none;
         padding: 0 35px 0 35px;
+        // margin: 20px;
 
         cursor: pointer;
         
@@ -22,5 +23,14 @@
             background-color: white;
             color: black;
             border: 1px solid black;
+        }
+
+        &.color{
+            background-color: #4285f2;
+            color: white;
+            &:hover{
+                background-color:#357ae0;
+                border: none;
+            }
         }
     }

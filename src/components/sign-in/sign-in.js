@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './sign-in.scss';
 import { FormInput } from '../form-input/form-input.component';
 import { StyleButton } from '../styled-button/styled-button.component';
+import { signInWithGoogle } from '../../firebase/filrebase.util';
 
 export const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -31,8 +32,10 @@ export const SignIn = () => {
           handleChange={(event) => setPassword(event.target.value)}
           required
         />
-
-        <StyleButton type="submit"> Sign In </StyleButton>
+        <div className="buttons">
+          <StyleButton type="submit"> Sign In </StyleButton>
+          <StyleButton onClick={signInWithGoogle} color="google blue"> Sign In with Google </StyleButton>
+        </div>
       </form>
     </div>
   );
