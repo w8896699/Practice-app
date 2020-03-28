@@ -2,8 +2,12 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+require('dotenv').config({
+  path: '.env.local',
+});
+
 const config = {
-  apiKey: 'AIzaSyAqAfSJ0Qiu1tjkLZQtsXvDM2Ro5MnroZo',
+  apiKey: process.env.REACT_APP_FIREBASE_API,
   authDomain: 'react-practice-d680d.firebaseapp.com',
   databaseURL: 'https://react-practice-d680d.firebaseio.com',
   projectId: 'react-practice-d680d',
