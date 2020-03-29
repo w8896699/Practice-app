@@ -7,7 +7,7 @@
         font-size: 15px;
         letter-spacing: 0.5px;
         font-family: 'Open Sans Condensed';
-        // line-height: 50px; ??? idunerstant what is this
+        line-height: 50px; //??? idunerstant what is this
         
         min-width: 165px;
         width: auto;
@@ -15,6 +15,7 @@
 
         border: none;
         padding: 0 35px 0 35px;
+        margin: 10px;
 
         cursor: pointer;
         
@@ -22,5 +23,14 @@
             background-color: white;
             color: black;
             border: 1px solid black;
+        }
+
+        &.color{
+            background-color: #4285f2;
+            color: white;
+            &:hover{
+                background-color:#357ae0;
+                border: none;
+            }
         }
     }

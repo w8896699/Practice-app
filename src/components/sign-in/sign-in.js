@@ -2,10 +2,22 @@ import React, { useState } from 'react';
 import './sign-in.scss';
 import { FormInput } from '../form-input/form-input.component';
 import { StyleButton } from '../styled-button/styled-button.component';
+import { signInWithGoogle, auth } from '../../firebase/filrebase.util';
 
 export const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const submitSignIn = async (event) => {
+    event.preventDefault();
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      setEmail('');
+      setPassword('');
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className="sign-in">
       <div className="title">
@@ -14,7 +26,7 @@ export const SignIn = () => {
 
       </div>
 
-      <form onSubmit={() => { setEmail(''); setPassword(''); }}>
+      <form onSubmit={submitSignIn}>
         <FormInput
           name="email"
           type="email"
@@ -31,8 +43,10 @@ export const SignIn = () => {
           handleChange={(event) => setPassword(event.target.value)}
           required
         />
-
-        <StyleButton type="submit"> Sign In </StyleButton>
+        <div className="buttons">
+          <StyleButton type="submit"> Sign In </StyleButton>
+          <StyleButton onClick={signInWithGoogle} color="google blue"> Sign In with Google </StyleButton>
+        </div>
       </form>
     </div>
   );

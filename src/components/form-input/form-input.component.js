@@ -4,6 +4,7 @@ import './form-input.style.scss';
 
 export const FormInput = ({ handleChange, label, ...props }) => {
   const { value } = props;
+  // console.log(props);
   return (
 
     <div className="input-box">
@@ -11,7 +12,7 @@ export const FormInput = ({ handleChange, label, ...props }) => {
       {
           label && (
           <label
-            className={`${value.length ? 'shrink' : ''} form-input-label`}
+            className={`${(value && value.length) ? 'shrink' : ''} form-input-label`}
           >
             {label}
           </label>

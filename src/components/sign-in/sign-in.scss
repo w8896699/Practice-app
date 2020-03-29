@@ -1,14 +1,12 @@
 .sign-in{
-    width: 30%;
+    width: 45%;
     display: flex;
     flex-direction: column;
 }
 .title{
     margin: 10px 0
 }
-// .sign-in-button{
-//     background: black;
-//     width: 40%;
-//     height: 50px;
-//     font-color: ;
-// }
+.buttons{
+display: flex;
+justify-content: space-between;
+}

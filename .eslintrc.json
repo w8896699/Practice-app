@@ -43,7 +43,7 @@
         // "no-unused-expressions": "warn",
         // "no-useless-concat": "warn",
         // "block-scoped-var": "error",
-        "consistent-return": "error",
+        // "consistent-return": "error",
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
         // "operator-linebreak": "off",
         // "eol-last": ["error", "always"]
