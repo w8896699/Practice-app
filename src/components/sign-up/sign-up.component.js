@@ -26,6 +26,7 @@ export const SignUp = () => {
       await createUserProfileDocument(user, { displayName }); // wait untill this process finished and reset all state
     } catch (error) {
       // Handle Errors here.
+      // eslint-disable-next-line no-console
       console.error(error);
       // ...
     }
@@ -34,10 +35,11 @@ export const SignUp = () => {
     setPassword('');
     setConfirmPassword('');
   };
+
   return (
     <div className="sign-up">
       <div className="title">
-        <h1> Do not have Account Yet ?</h1>
+        <h2> Do not have Account Yet ?</h2>
         <span>Sign up with email now!</span>
       </div>
 

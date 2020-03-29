@@ -47,7 +47,7 @@ class CardsContainerDefault extends React.Component {
       <div className="directory-menu">
         {
           sections.map(({
-             id, ...otherSectionProps
+            id, ...otherSectionProps
           }) => (
             <CategoryCard
               key={id}
