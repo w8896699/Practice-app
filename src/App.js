@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import HomePage from './pages/homepage/homepage';
@@ -13,6 +13,7 @@ import * as userAction from './redux/user/user.action';
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
+
 
   // 这里我曾经用的useeffect,但是用了redux之后好像就不能用了,在我用use effect的时候,有个curuser的触发条件很奇怪,明明没有设置却会被触发
   componentDidMount() {
@@ -38,7 +39,9 @@ class App extends React.Component {
     this.unsubscribeFromAuth();
   }
 
+
   render() {
+    const { currentUser } = this.props;
     return (
       <div className="App">
         <Header />
@@ -46,15 +49,23 @@ class App extends React.Component {
           {' //Switch 只会match第一个 path, 后面再多的都不会match '}
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
-          <Route path="/signin" component={SignInSignUpPage} />
+          <Route
+            exact
+            path="/signin"
+            render={() => (currentUser ? (
+              <Redirect to="/" />)
+              : <SignInSignUpPage />)}
+          />
         </Switch>
       </div>
     );
   }
 }
-
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(userAction.setCurrentUser(user)),
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
