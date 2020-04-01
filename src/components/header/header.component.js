@@ -41,4 +41,4 @@ const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
   currentUser,
   hidden,
 });
-export default connect(mapStateToProps)(Header); // connect is a higher component that gets mapStateToProps() an=====-= to get the state value.;
+export default connect(mapStateToProps)(Header); // connect is a higher component that gets mapStateToProps() to get the state value.;
