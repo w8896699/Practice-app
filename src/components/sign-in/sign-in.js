@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './sign-in.scss';
 import { FormInput } from '../form-input/form-input.component';
-import { StyleButton } from '../styled-button/styled-button.component';
+import StyleButton from '../styled-button/styled-button.component';
 import { signInWithGoogle, auth } from '../../firebase/filrebase.util';
 
 export const SignIn = () => {

@@ -4,6 +4,7 @@
     flex-direction: column;
     height: 350px;
     align-items: center;
+    position: relative;
     // margin: auto; 在app.css里面直接加了padding
  
   
@@ -13,6 +14,22 @@
       background-size: cover;
       background-position: center;
       margin-bottom: 5px;
+    }
+    .custom-button{
+      width: 80%;
+      opacity: 70%;
+      position: absolute;
+      top: 250px;
+      display: none;
+    }
+    &:hover{
+      .image{
+        opacity: 0.8;
+      }
+      .custom-button{
+        opacity: 0.8;
+        display: flex;
+      }
     }
   
     .collection-footer {

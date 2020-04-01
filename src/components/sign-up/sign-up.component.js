@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import './sign-up.style.scss';
 
 import { FormInput } from '../form-input/form-input.component';
-import { StyleButton } from '../styled-button/styled-button.component';
+import StyleButton from '../styled-button/styled-button.component';
 import { auth, createUserProfileDocument } from '../../firebase/filrebase.util';
 
 export const SignUp = () => {

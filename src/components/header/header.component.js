@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { ReactComponent as Logo } from '../../asset/logo/logo.svg'; // this syntax is just for when import SVG in React
+import CartIcon from '../cart-icon/cart-icon.component';
 import { auth } from '../../firebase/filrebase.util';
+import CartDropDown from '../cart-dropdown/cart-dropdown.component';
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, hidden }) => {
   console.log('currentUser', currentUser);
   return ( // now reciving current session from reducer
     <div className="header">
@@ -29,11 +31,14 @@ const Header = ({ currentUser }) => {
             SIGN IN
           </Link>
         ) }
+        <CartIcon />
       </div>
+      {!hidden && <CartDropDown />}
     </div>
   );
 };
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
 });
 export default connect(mapStateToProps)(Header); // connect is a higher component that gets mapStateToProps() an=====-= to get the state value.;

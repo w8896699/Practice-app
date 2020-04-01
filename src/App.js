@@ -18,7 +18,7 @@ class App extends React.Component {
   // 这里我曾经用的useeffect,但是用了redux之后好像就不能用了,在我用use effect的时候,有个curuser的触发条件很奇怪,明明没有设置却会被触发
   componentDidMount() {
     const { setCurrentUser } = this.props;
-
+    // onAuthStateChange is listerner, it listen to change in user login state, and run the callback whenever user sign out or sign in
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) { // only if user is login in (for now with google)
         const userRef = await createUserProfileDocument(userAuth);
