@@ -2,7 +2,7 @@ import React from 'react';
 import CategoryCard from '../menu-card/general-category-card.component';
 import './item-cards-container.style.scss';
 
-class CardsContainerDefault extends React.Component {
+class CardsContainer extends React.Component {
   state = {
     sections: [
       {
@@ -60,4 +60,4 @@ class CardsContainerDefault extends React.Component {
     );
   }
 }
-export default CardsContainerDefault;
+export default CardsContainer;

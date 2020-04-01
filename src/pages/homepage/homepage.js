@@ -4,7 +4,7 @@ import './homepage.component.scss';
 import CardsContainer from '../../components/cards-container/item-cards-container.component';
 
 
-export const HomePage = () => (
+const HomePage = () => (
   <div className="homepage">
     <CardsContainer />
   </div>
