@@ -2,14 +2,18 @@ import React from 'react';
 import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import HomePage from './pages/homepage/homepage';
 import ShopPage from './pages/shop/shop.component';
 import { SignInSignUpPage } from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
+import CheckoutPage from './pages/checkout/checkout-page';
+
 import Header from './components/header/header.component'; // 不能 import {Header}, otherwise mapStateToProps wont get any state from reducer
 import { auth, createUserProfileDocument } from './firebase/filrebase.util';
 
 import * as userAction from './redux/user/user.action';
+import { selectCurrentUser } from './redux/user/user.selector';
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -56,13 +60,14 @@ class App extends React.Component {
               <Redirect to="/" />)
               : <SignInSignUpPage />)}
           />
+          <Route exact path="/checkout" component={CheckoutPage} />
         </Switch>
       </div>
     );
   }
 }
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = createStructuredSelector({ // best practice
+  currentUser: selectCurrentUser,
 });
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(userAction.setCurrentUser(user)),
