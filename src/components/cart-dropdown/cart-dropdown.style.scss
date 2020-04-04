@@ -17,6 +17,12 @@ z-index: 5;
     display: flex;
     flex-direction: column;
     overflow: scroll;
+
+    .empty{
+ 
+        font-size: 20px;
+        margin: 60px auto;
+    }
 }
 
     button{
