@@ -5,6 +5,8 @@ import storage from 'redux-persist/lib/storage'; // tell redux we gonna use wind
 
 import userReducer from './user/user.reducer';
 import cartReducer from './cart/cart.reducer';
+import directoryReducer from './directory/directory.reducer';
+import shopReduce from './shop/shop.reducer';
 
 const persisttConfig = {
   key: 'root',
@@ -15,6 +17,8 @@ const persisttConfig = {
 const rootRudece = combineReducers({
   user: userReducer,
   cart: cartReducer,
+  directory: directoryReducer,
+  shop: shopReduce,
 });
 
 export default persistReducer(persisttConfig, rootRudece);
