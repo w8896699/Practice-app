@@ -1,10 +1,14 @@
 import React from 'react';
+
+import { Route } from 'react-router-dom';
+import CollectionPage from '../collection/collection.page';
 import PreviewofCollection from '../../components/collection-overview/collection-overview.component';
 
-const ShopPage = ({ collections }) => (
+const ShopPage = ({ match }) => (
 // state = { collections: SHOP_DATA }
   <div className="shop-page">
-    <PreviewofCollection />
+    <Route exact path={`${match.path}`} component={PreviewofCollection} />
+    <Route path={`${match.path}/:collectionID`} component={CollectionPage} />
   </div>
 );
 
