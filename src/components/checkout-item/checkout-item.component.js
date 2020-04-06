@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import * as setCartItem from '../../redux/cart/cart.action';
 
+
 import './checkout-item.style.scss';
 
 const CheckoutItem = ({
