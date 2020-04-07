@@ -16,6 +16,7 @@ export const selectCollectionForPreview = createSelector(
 
 
 // in here this function will return a function that create selector
+
 export const selectCollection = (collectionUrlParam) => createSelector(
   [selectCollections],
   (collections) => collections[collectionUrlParam],
