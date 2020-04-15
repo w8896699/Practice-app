@@ -2,6 +2,8 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+
+// Firestore is a NoSQL, document-oriented database unlike a SQL database, there are no tables or row, store data in document.
 require('dotenv').config({
   path: '.env.local',
 });
@@ -28,6 +30,7 @@ export const createUserProfileDocument = async (userAuth, otherData) => {
 
   const userRef = firestore.doc(`users/${userAuth.uid}`); // query doc就 得到/进入 了这个用户的reference
 
+
   const userSnapShot = (await userRef.get()); // 用上面的到的referenct去数据库里提取有关信息存为 snapshot
   //   console.log('userSnapShot,', userSnapShot);
   if (!userSnapShot.exists) { // if this user never register b4, which will not exist in our firebase db, then exist is false
@@ -50,6 +53,40 @@ export const createUserProfileDocument = async (userAuth, otherData) => {
   return userRef;
 };
 
+export const addCollectionAndDocuments = async (collectionKey, objectToAdd) => { // this is just for one time use to add collection into firebase
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch(); // Batch => bcs we can only do set call once at a time, so if one call fail, all will fail
+
+  objectToAdd.forEach((element) => {
+    const newDocRef = collectionRef.doc(); // tell firebase give/create for me new reference in this collection, create ur own key
+    // originaly we will call this like : newDocRef.set(element), but reason is at 上面三行
+    batch.set(newDocRef, element);
+  });
+  await batch.commit(); // this will submit all batch request at one, and will return a promise, once complet it will return a void value
+};
+
+
+export const convertCollectionsSnapShotToMap = (collection) => { // get info from snapshot of a collection of firebase
+  // console.log('collection', collection);
+  const transformedCollection = collection.docs.map((element) => {
+    const { title, items } = element.data();
+    return {
+      routeName: encodeURI(title.toLowerCase()), // comes with js, pass into string, give back string that url can read, use title as route name as well
+      id: element.id,
+      title,
+      items,
+    };
+  });
+
+  // console.log('trnasformedCollection,', transformedCollection);
+  // return transformedCollection;
+  return transformedCollection.reduce((accumulator, element) => { // 这个只是把它变好看一点,把title弄成object的key
+    accumulator[element.title.toLowerCase()] = element;
+    return accumulator;
+  }, {});
+  // console.log('wtf', test);
+};
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
