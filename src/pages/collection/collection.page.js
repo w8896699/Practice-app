@@ -5,7 +5,7 @@ import './category.style.scss';
 import { selectCollection } from '../../redux/shop/shop.selector';
 
 const CollectionPage = ({ collection }) => {
-  // console.log('hiahia', collection);// 这个地方会是null...因为那个updatecollection是个async, 要一点时间,所以这里需要等一下..loading
+  console.log('hiahia', collection);// 这个地方会是null...因为那个updatecollection是个async,
   const { title, items } = collection;
   return (
     <div className="collection-page">

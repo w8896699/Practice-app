@@ -22,4 +22,14 @@ export const selectCollection = (collectionUrlParam) => createSelector(
   (collections) => (collections ? collections[collectionUrlParam] : []),
 );
 
+export const selectIsCollectionFetching = createSelector(
+  [selectShop],
+  (shop) => shop.isFetching,
+);
+
+export const selectIsCollectionLoaded = createSelector(
+  [selectShop],
+  (shop) => !!shop.collections,
+);
+
 export default selectCollections;
