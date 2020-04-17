@@ -46,9 +46,7 @@ const WithSpinner = (Component) => {
       <SpinnerContainer />
     </SpinnerOverlay>
   )
-    : <Component {...other} />)// 不然就higher order component, 该放什么正常放
-
-        ;
+    : <Component {...other} />);// 不然就higher order component, 该放什么正常放
   return Spinner;
 };
 

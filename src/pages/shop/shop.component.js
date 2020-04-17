@@ -24,11 +24,16 @@ componentDidMount() {
   const { updateCollections } = this.props;
   const collectionRef = firestore.collection('collections'); // 从firestore里把整个collection的ref拿出来,
 
-  this.unsubscribeFromSnapshot = collectionRef.onSnapshot(async (Snapshot) => {
+  // this.unsubscribeFromSnapshot = collectionRef.onSnapshot(async (Snapshot) => {
+  //   const collectionMap = convertCollectionsSnapShotToMap(Snapshot);
+  //   updateCollections(collectionMap); // 这里是async, 需要等待的,接到信息了update到redux里头去
+  //   this.setState({ loading: false });
+  // }); //= > this means whenever collectionSnapshot got update, or run first time this will send collection data arry to us
+  collectionRef.get().then((Snapshot) => { // 这个是标准格式,上面那个是firebase提供的方法 m m m m
     const collectionMap = convertCollectionsSnapShotToMap(Snapshot);
-    updateCollections(collectionMap); // 这里是async, 需要等待的,接到信息了update到redux里头去
+    updateCollections(collectionMap);
     this.setState({ loading: false });
-  }); //= > this means whenever collectionSnapshot got update, or run first time this will send collection data arry to us
+  });
 }
 
 render() {
