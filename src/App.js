@@ -10,10 +10,11 @@ import { SignInSignUpPage } from './pages/sign-in-and-sign-up/sign-in-and-sign-u
 import CheckoutPage from './pages/checkout/checkout-page';
 
 import Header from './components/header/header.component'; // 不能 import {Header}, otherwise mapStateToProps wont get any state from reducer
-import { auth, createUserProfileDocument } from './firebase/filrebase.util';
+import { auth, createUserProfileDocument } from './firebase/filrebase.util';// addCollectionAndDocuments this is just for one time use to add collection into firebase
 
 import * as userAction from './redux/user/user.action';
 import { selectCurrentUser } from './redux/user/user.selector';
+
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -27,6 +28,7 @@ class App extends React.Component {
       if (userAuth) { // only if user is login in (for now with google)
         const userRef = await createUserProfileDocument(userAuth);
 
+
         userRef.onSnapshot((snapShot) => { // get snapshot from firebase and put in our state for all
           setCurrentUser({
             id: snapShot.id,
@@ -35,6 +37,7 @@ class App extends React.Component {
         });
       } else {
         setCurrentUser(userAuth);// this is for set back our user to null
+        // addCollectionAndDocuments('collections', collections.map(({ title, items }) => ({ title, items }))); //this is just for one time use to add collection into firebase
       }
     });
   }
@@ -68,6 +71,7 @@ class App extends React.Component {
 }
 const mapStateToProps = createStructuredSelector({ // best practice
   currentUser: selectCurrentUser,
+  // collections: selectCollectionForPreview,
 });
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(userAction.setCurrentUser(user)),
