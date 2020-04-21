@@ -10,9 +10,8 @@ import { SignInSignUpPage } from './pages/sign-in-and-sign-up/sign-in-and-sign-u
 import CheckoutPage from './pages/checkout/checkout-page';
 
 import Header from './components/header/header.component'; // 不能 import {Header}, otherwise mapStateToProps wont get any state from reducer
-import { auth, createUserProfileDocument } from './firebase/filrebase.util';// addCollectionAndDocuments this is just for one time use to add collection into firebase
 
-import * as userAction from './redux/user/user.action';
+// import * as userAction from './redux/user/user.action';
 import { selectCurrentUser } from './redux/user/user.selector';
 
 
@@ -22,24 +21,24 @@ class App extends React.Component {
 
   // 这里我曾经用的useeffect,但是用了redux之后好像就不能用了,在我用use effect的时候,有个curuser的触发条件很奇怪,明明没有设置却会被触发
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-    // onAuthStateChange is listerner, it listen to change in user login state, and run the callback whenever user sign out or sign in
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) { // only if user is login in (for now with google)
-        const userRef = await createUserProfileDocument(userAuth);
+    // const { setCurrentUser } = this.props;
+    //   // onAuthStateChange is listerner, it listen to change in user login state, and run the callback whenever user sign out or sign in
+    //   this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+    //     if (userAuth) { // only if user is login in (for now with google)
+    //       const userRef = await createUserProfileDocument(userAuth);
 
 
-        userRef.onSnapshot((snapShot) => { // get snapshot from firebase and put in our state for all
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          });
-        });
-      } else {
-        setCurrentUser(userAuth);// this is for set back our user to null
-        // addCollectionAndDocuments('collections', collections.map(({ title, items }) => ({ title, items }))); //this is just for one time use to add collection into firebase
-      }
-    });
+  //       userRef.onSnapshot((snapShot) => { // get snapshot from firebase and put in our state for all
+  //         setCurrentUser({
+  //           id: snapShot.id,
+  //           ...snapShot.data(),
+  //         });
+  //       });
+  //     } else {
+  //       setCurrentUser(userAuth);// this is for set back our user to null
+  //       // addCollectionAndDocuments('collections', collections.map(({ title, items }) => ({ title, items }))); //this is just for one time use to add collection into firebase
+  //     }
+  //   });
   }
 
   componentWillUnmount() {
@@ -73,8 +72,8 @@ const mapStateToProps = createStructuredSelector({ // best practice
   currentUser: selectCurrentUser,
   // collections: selectCollectionForPreview,
 });
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(userAction.setCurrentUser(user)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   setCurrentUser: (user) => dispatch(userAction.setCurrentUser(user)),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
