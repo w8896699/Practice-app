@@ -87,7 +87,12 @@ export const convertCollectionsSnapShotToMap = (collection) => { // get info fro
   }, {});
   // console.log('wtf', test);
 };
-
+export const getCurrentUser = () => new Promise((resolve, reject) => {
+  const unsubscribe = auth.onAuthStateChanged((userAuth) => { // this will go check if user ever sign out
+    unsubscribe();
+    resolve(userAuth);
+  }, reject);
+});
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
 

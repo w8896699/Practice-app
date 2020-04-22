@@ -6,13 +6,14 @@ import { createStructuredSelector } from 'reselect';
 
 import { ReactComponent as Logo } from '../../asset/logo/logo.svg'; // this syntax is just for when import SVG in React
 import CartIcon from '../cart-icon/cart-icon.component';
-import { auth } from '../../firebase/filrebase.util';
+// import { auth } from '../../firebase/filrebase.util';
 import CartDropDown from '../cart-dropdown/cart-dropdown.component';
 
 import { selectCurrentUser } from '../../redux/user/user.selector';
 import { selectCartHidden } from '../../redux/cart/cart.selector';
+import * as userAction from '../../redux/user/user.action';
 
-const Header = ({ currentUser, hidden }) => ( // now reciving current session from reducer
+const Header = ({ currentUser, hidden, signOutStart }) => ( // now reciving current session from reducer
   <div className="header">
     <Link className="logo-container" to="/">
       <Logo className="logo" />
@@ -25,7 +26,7 @@ const Header = ({ currentUser, hidden }) => ( // now reciving current session fr
         CONTACT
       </Link>
       {currentUser ? (
-        <div className="option" onClick={() => auth.signOut()}>
+        <div className="option" onClick={signOutStart}>
           Sign Out
         </div>
       ) : (
@@ -47,4 +48,8 @@ const mapStateToProps = createStructuredSelector({ // createStructuredSelector w
   currentUser: selectCurrentUser,
   hidden: selectCartHidden,
 });
-export default connect(mapStateToProps)(Header); // connect is a higher component that gets mapStateToProps() to get the state value.;
+
+const mapDispatchToProps = (dispatch) => ({
+  signOutStart: () => dispatch(userAction.signOutStart()),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Header); // connect is a higher component that gets mapStateToProps() to get the state value.;

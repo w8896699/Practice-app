@@ -11,7 +11,7 @@ import CheckoutPage from './pages/checkout/checkout-page';
 
 import Header from './components/header/header.component'; // 不能 import {Header}, otherwise mapStateToProps wont get any state from reducer
 
-// import * as userAction from './redux/user/user.action';
+import * as userAction from './redux/user/user.action';
 import { selectCurrentUser } from './redux/user/user.selector';
 
 
@@ -21,7 +21,8 @@ class App extends React.Component {
 
   // 这里我曾经用的useeffect,但是用了redux之后好像就不能用了,在我用use effect的时候,有个curuser的触发条件很奇怪,明明没有设置却会被触发
   componentDidMount() {
-    // const { setCurrentUser } = this.props;
+    const { checkUserSession } = this.props;
+    checkUserSession();
     //   // onAuthStateChange is listerner, it listen to change in user login state, and run the callback whenever user sign out or sign in
     //   this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
     //     if (userAuth) { // only if user is login in (for now with google)
@@ -72,8 +73,8 @@ const mapStateToProps = createStructuredSelector({ // best practice
   currentUser: selectCurrentUser,
   // collections: selectCollectionForPreview,
 });
-// const mapDispatchToProps = (dispatch) => ({
-//   setCurrentUser: (user) => dispatch(userAction.setCurrentUser(user)),
-// });
+const mapDispatchToProps = (dispatch) => ({
+  checkUserSession: () => dispatch(userAction.checkUserSession()),
+});
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

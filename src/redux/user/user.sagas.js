@@ -5,9 +5,11 @@ import {
 
 import UserActionTypes from './user.types';
 import {
-  signInSuccess, signInFailure,
+  signInSuccess, signInFailure, signOutSuccess, signOutFailure,
 } from './user.action';
-import { auth, googleProvider, createUserProfileDocument } from '../../firebase/filrebase.util';
+import {
+  auth, googleProvider, createUserProfileDocument, getCurrentUser,
+} from '../../firebase/filrebase.util';
 
 export function* getSnapShotFromFireBase(userAuth) {
   try {
@@ -18,7 +20,15 @@ export function* getSnapShotFromFireBase(userAuth) {
     yield put(signInFailure(error));
   }
 }
-
+export function* isUserAuth() {
+  try {
+    const userAuth = yield getCurrentUser();
+    if (!userAuth) return;
+    yield getSnapShotFromFireBase(userAuth);
+  } catch (error) {
+    put(signInFailure(error));
+  }
+}
 export function* signInWithGoogle() {
   try {
     const { user } = yield auth.signInWithPopup(googleProvider);
@@ -36,17 +46,35 @@ export function* signInWithEmail({ payload: { email, password } }) {
     yield put(signInFailure(error));
   }
 }
+export function* signOut() {
+  try {
+    yield auth.signOut();
+    yield (put(signOutSuccess()));
+  } catch (error) {
+    yield put(signOutFailure(error));
+  }
+}
 
 export function* onGoogleSignInStart() {
   yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
 }
 
 export function* onEmailSignInStart() {
-  console.log('2123123station');
-  yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
+  yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);// 这个地方听action, 谁叫了这个type就call this saga
 }
 
+export function* onSignOutStart() {
+  yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
+}
 
+export function* checkUserSession() {
+  yield takeLatest(UserActionTypes.CHECK_USER_SESSION, isUserAuth);
+}
 export function* userSagas() {
-  yield all([call(onGoogleSignInStart), call(onEmailSignInStart)]);
+  yield all([
+    call(onGoogleSignInStart),
+    call(onEmailSignInStart),
+    call(isUserAuth),
+    call(onSignOutStart),
+  ]);
 }
