@@ -42,4 +42,16 @@ export const emailSignInStart = (emailAndPassword) => ({
   payload: emailAndPassword,
 });
 
+export const signUpStart = (userCredentials) => ({
+  type: UserActionTypes.SIGN_UP_START,
+  payload: userCredentials,
+});
+export const signUpSuccess = ({ user, additionalData }) => ({
+  type: UserActionTypes.SIGN_UP_SUCCESS,
+  payload: { user, additionalData },
+});
+export const signUpFailure = () => ({
+  type: UserActionTypes.SIGN_UP_FAILURE,
+});
+
 export default setCurrentUser;

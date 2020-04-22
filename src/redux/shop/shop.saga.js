@@ -1,12 +1,12 @@
-import { takeLatest, call, put } from 'redux-saga/effects'; // listen every action of specialc type we prase in
+import {
+  takeLatest, call, put, all,
+} from 'redux-saga/effects'; // listen every action of specialc type we prase in
 import ShopActionTypes from './shop.types';
 
 import { firestore, convertCollectionsSnapShotToMap } from '../../firebase/filrebase.util';
 import { fetchCollectionFailure, fetchCollectionSuccess } from './shop.actions';
 
 export function* fetchCollectionAsync() {
-  yield console.log('I am here');
-
   try {
     const collectionRef = firestore.collection('collections'); // 从firestore里把整个collection的ref拿出来,
     const Snapshot = yield collectionRef.get();
@@ -31,4 +31,10 @@ export function* fetchCollectionStart() {
     ShopActionTypes.FETCH_COLLECTION_START,
     fetchCollectionAsync,
   );
+}
+
+export function* shopSagas() {
+  yield (all([
+    call(fetchCollectionStart),
+  ]));
 }
