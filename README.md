@@ -68,4 +68,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 
-firebase alter to change rule
+firebase alter to change rule, now I just rewrite
