@@ -2,12 +2,13 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import './sign-up.style.scss';
-
+import { connect } from 'react-redux';
+import * as userAction from '../../redux/user/user.action';
 import { FormInput } from '../form-input/form-input.component';
 import StyleButton from '../styled-button/styled-button.component';
-import { auth, createUserProfileDocument } from '../../firebase/filrebase.util';
 
-export const SignUp = () => {
+
+const SignUp = ({ signUpStart }) => {
 //   console.log('hahia');
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
@@ -21,19 +22,17 @@ export const SignUp = () => {
     } else if ((password.length) < 6) {
       alert('Password has to longer that 6 character');
     }
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(email, password);
-      await createUserProfileDocument(user, { displayName }); // wait untill this process finished and reset all state
-    } catch (error) {
-      // Handle Errors here.
-      // eslint-disable-next-line no-console
-      console.error(error);
-      // ...
-    }
-    setDisplayName('');
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
+
+    signUpStart({ displayName, email, password });
+    // try {
+    //   const { user } = await auth.createUserWithEmailAndPassword(email, password);
+    //   await createUserProfileDocument(user, { displayName }); // wait untill this process finished and reset all state
+    // } catch (error) {
+    //   // Handle Errors here.
+    //   // eslint-disable-next-line no-console
+    //   console.error(error);
+    //   // ...
+    // }
   };
 
   return (
@@ -83,4 +82,8 @@ export const SignUp = () => {
     </div>
   );
 };
-export default SignUp;
+
+const mapDispatchToProps = (dispatch) => ({
+  signUpStart: (userCredentials) => dispatch(userAction.signUpStart(userCredentials)),
+});
+export default connect(null, mapDispatchToProps)(SignUp);

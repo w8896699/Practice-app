@@ -42,7 +42,7 @@ class ShopPage extends React.Component {
 // });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionStartAsync: () => dispatch(shopAction.fetchCollectionStartAsync()),
+  fetchCollectionStartAsync: () => dispatch(shopAction.fetchCollectionStart()),
 });
 
 export default connect(null, mapDispatchToProps)(ShopPage);
