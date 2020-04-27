@@ -34,7 +34,6 @@ app.post('/payment', (req,res) => {
         currency: 'cad'
     }
 stripe.charges.create(body, (stripeErr, stripeRes) =>{
-    console.log(stripeErr)
     if(stripeErr){
         res.status(500).send({error: stripeErr});
     }else{
