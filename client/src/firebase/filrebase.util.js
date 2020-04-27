@@ -5,8 +5,6 @@ import 'firebase/auth';
 
 // Firestore is a NoSQL, document-oriented database unlike a SQL database, there are no tables or row, store data in document.
 // require('dotenv').config();
-
-console.log('hiahia',process.env)
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API,
   authDomain: 'react-practice-d680d.firebaseapp.com',
