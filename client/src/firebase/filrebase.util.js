@@ -76,13 +76,12 @@ export const convertCollectionsSnapShotToMap = (collection) => { // get info fro
     };
   });
 
-  // console.log('trnasformedCollection,', transformedCollection);
+
   // return transformedCollection;
   return transformedCollection.reduce((accumulator, element) => { // 这个只是把它变好看一点,把title弄成object的key
     accumulator[element.title.toLowerCase()] = element;
     return accumulator;
   }, {});
-  // console.log('wtf', test);
 };
 export const getCurrentUser = () => new Promise((resolve, reject) => {
   const unsubscribe = auth.onAuthStateChanged((userAuth) => { // this will go check if user ever sign out

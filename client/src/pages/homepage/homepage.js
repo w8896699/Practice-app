@@ -6,6 +6,7 @@ import CardsContainer from '../../components/cards-container/item-cards-containe
 
 const HomePage = () => (
   <div className="homepage">
+  <h1>This is a test</h1>
     <CardsContainer />
   </div>
 );
