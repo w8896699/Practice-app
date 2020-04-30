@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import './App.css';
+// import './App.css';
+import {GlobalStyle} from './global.style'
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -52,6 +53,7 @@ const App = ({ checkUserSession, currentUser }) => {
   // }
   return (
     <div className="App">
+    <GlobalStyle />
       <Header />
       <Switch>
         {' //Switch 只会match第一个 path, 后面再多的都不会match '}

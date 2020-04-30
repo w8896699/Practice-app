@@ -8,16 +8,19 @@
     border: 1px solid black;
     margin: 0 7.5px 15px;
     overflow: hidden; //hover 的时候变大会超出div
-    // &:first-child {
-    //   margin-right: 7.5px;
-    // }
+    &:first-child {
+      margin-right: 7.5px;
+    }
   
-    // &:last-child {
-    //   margin-left: 7.5px;
-    // }
+    &:last-child {
+      margin-left: 7.5px;
+    }
 
     &.large{
         height: 380px;
+    }
+    @media screen and (max-width:800){
+      height: 200px;    
     }
     &:hover{
         cursor: pointer;
